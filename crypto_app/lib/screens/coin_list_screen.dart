@@ -15,10 +15,14 @@ class _ShowCoinListScreenState extends State<ShowCoinListScreen> {
   List<Crypto>? cryptoList;
   bool searchTextTextField = false;
   bool isSearchLoadingVisible = false;
+  TextEditingController textControler = TextEditingController();
   @override
   void initState() {
     super.initState();
     cryptoList = widget.cryptoList;
+    textControler.addListener(() {
+      _fiterList(TextEditingController().text);
+    });
   }
 
   @override
@@ -205,6 +209,7 @@ class _ShowCoinListScreenState extends State<ShowCoinListScreen> {
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: TextField(
+          controller: textControler,
           onChanged: (value) {
             _fiterList(value);
           },
@@ -235,6 +240,7 @@ class _ShowCoinListScreenState extends State<ShowCoinListScreen> {
       });
       return;
     }
+
     cryptoResultList = cryptoList!.where((element) {
       return element.name.toLowerCase().contains(enteredKeyword.toLowerCase());
     }).toList();
