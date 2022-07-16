@@ -1,7 +1,9 @@
+import 'package:crypto_app/data/constants/colors.dart';
 import 'package:crypto_app/data/model/crypto.dart';
 import 'package:crypto_app/screens/coin_list_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -19,11 +21,24 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          width: 100,
-          height: 100,
-          color: Colors.red,
+      backgroundColor: blackColor,
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SpinKitCircle(
+              size: 100,
+              color: whiteColor,
+            ),
+            Text(
+              'loading...',
+              style: TextStyle(
+                fontFamily: 'mh',
+                color: whiteColor,
+                fontSize: 20,
+              ),
+            )
+          ],
         ),
       ),
     );

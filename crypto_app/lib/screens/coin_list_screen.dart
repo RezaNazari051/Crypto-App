@@ -32,6 +32,7 @@ class _ShowCoinListScreenState extends State<ShowCoinListScreen> {
         backgroundColor: greenColor,
         onRefresh: () async {
           List<Crypto> freshData = await _getData();
+          searchTextTextField = false;
           setState(
             () {
               cryptoList = freshData;
@@ -103,11 +104,11 @@ class _ShowCoinListScreenState extends State<ShowCoinListScreen> {
                     constraints: BoxConstraints(
                         minHeight: 20,
                         maxHeight: 20,
-                        minWidth: 70,
-                        maxWidth: 70),
+                        minWidth: 90,
+                        maxWidth: 90),
                     child: Center(
                       child: Text(
-                        crypto.priceUsd.toStringAsFixed(2),
+                        crypto.priceUsd.toStringAsFixed(2) + ' \$',
                         style: TextStyle(
                             color: greyColor, fontWeight: FontWeight.bold),
                       ),
@@ -117,12 +118,15 @@ class _ShowCoinListScreenState extends State<ShowCoinListScreen> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),
+                  SizedBox(
+                    height: 5,
+                  ),
                   Container(
                     constraints: BoxConstraints(
-                        minHeight: 25,
-                        maxHeight: 25,
-                        minWidth: 70,
-                        maxWidth: 70),
+                        minHeight: 20,
+                        maxHeight: 20,
+                        minWidth: 90,
+                        maxWidth: 90),
                     child: Center(
                       child: Text(
                         crypto.changePercent24Hr.toStringAsFixed(2),
